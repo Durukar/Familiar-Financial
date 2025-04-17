@@ -1,3 +1,24 @@
+server:
+  port: 3001
+  servlet:
+    context-path: /api/v1
+
 spring:
   application:
-    name: Familiar-Financial
+    name: backend
+  flyway:
+    baseline-on-migrate: false
+    enabled: true
+    locations: classpath:db/migration
+    schemas: ff
+    default-schema: ff
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ff?currentSchema=ff
+    username: postgres
+    password: postgres
+
+logging:
+  level:
+    org.flywaydb.core: DEBUG

@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  ff-postgres:
+    image: postgres:latest
+    container_name: ff-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ff
+    ports:
+      - "5432:5432"
+    volumes:
+      - ff_postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  ff_postgres_data:
