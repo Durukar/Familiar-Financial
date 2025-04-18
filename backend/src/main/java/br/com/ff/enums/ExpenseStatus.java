@@ -1,7 +1,7 @@
 package br.com.ff.enums;
 
-public enum ExpsenseStatus {
+public enum ExpenseStatus {
 	APROVED,
 	REJECTED,
-	NEED_REVIEW,
+	PENDING,
 }

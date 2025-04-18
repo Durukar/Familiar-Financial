@@ -1,11 +1,10 @@
 package br.com.ff.models;
 
 import br.com.ff.abstracts.AbstractModel;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +16,12 @@ public class UserModel extends AbstractModel {
 
 	@Column(unique = true, nullable = false)
 	private String password;
+
+	@OneToMany(mappedBy = "requestedBy")
+	private List<Expense> requestedExpenses = new ArrayList<Expense>();
+
+	@OneToMany(mappedBy = "approvedBy")
+	private List<Expense> approvedExpenses = new ArrayList<Expense>();
 
 	public String getUsername() {
 		return username;
@@ -32,6 +37,14 @@ public class UserModel extends AbstractModel {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<Expense> getApprovedExpenses() {
+		return approvedExpenses;
+	}
+
+	public List<Expense> getRequestedExpenses() {
+		return requestedExpenses;
 	}
 
 	@Override

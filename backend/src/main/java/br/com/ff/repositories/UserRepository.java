@@ -1,4 +1,14 @@
 package br.com.ff.repositories;
 
-public interface UserRepository {
+import br.com.ff.models.UserModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.UUID;
+
+@Repository
+public interface UserRepository extends JpaRepository<UserModel, UUID> {
+	Object findByUsername(String username);
 }

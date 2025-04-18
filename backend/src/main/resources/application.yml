@@ -19,6 +19,6 @@ spring:
     username: postgres
     password: postgres
 
-logging:
-  level:
-    org.flywaydb.core: DEBUG
+#logging:
+#  level:
+#    org.flywaydb.core: DEBUG

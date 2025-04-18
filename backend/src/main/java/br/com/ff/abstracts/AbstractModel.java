@@ -1,9 +1,11 @@
 package br.com.ff.abstracts;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -16,21 +18,17 @@ public class AbstractModel implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	private UUID id;
 
-	@Column(name = "creted_at", updatable = false, nullable = false)
-	private Date createdAt;
+	@CreationTimestamp
+	@Column(name = "created_at", updatable = false)
+	private LocalDate createdAt;
 
-	@Column(name = "updated_at", nullable = false, updatable = false)
+	@Column(name = "updated_at", updatable = false)
 	private Date updatedAt;
 
 	public AbstractModel() {}
 
 	public UUID getId() {
 		return id;
-	}
-
-	public Date getCreatedAt() {
-		createdAt = new Date();
-		return createdAt;
 	}
 
 	public Date getUpdatedAt() {
