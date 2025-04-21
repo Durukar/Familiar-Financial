@@ -1,8 +1,7 @@
-package br.com.ff.services;
+package br.com.ff.application.service;
 
-import br.com.ff.repositories.UserRepository;
+import br.com.ff.infra.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

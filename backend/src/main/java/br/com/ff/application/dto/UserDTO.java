@@ -1,6 +1,6 @@
-package br.com.ff.dtos;
+package br.com.ff.application.dto;
 
-import br.com.ff.enums.UserRoles;
+import br.com.ff.domain.model.UserRoles;
 
 import java.util.UUID;
 

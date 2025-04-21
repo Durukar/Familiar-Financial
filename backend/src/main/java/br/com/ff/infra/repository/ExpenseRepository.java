@@ -1,6 +1,6 @@
-package br.com.ff.repositories;
+package br.com.ff.infra.repository;
 
-import br.com.ff.models.ExpenseModel;
+import br.com.ff.domain.model.ExpenseModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

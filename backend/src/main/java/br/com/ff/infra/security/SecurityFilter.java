@@ -1,6 +1,6 @@
 package br.com.ff.infra.security;
 
-import br.com.ff.repositories.UserRepository;
+import br.com.ff.infra.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

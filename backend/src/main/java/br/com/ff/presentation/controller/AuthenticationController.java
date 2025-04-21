@@ -1,10 +1,9 @@
-package br.com.ff.controllers;
+package br.com.ff.presentation.controller;
 
-import br.com.ff.dtos.LoginResponseDTO;
-import br.com.ff.dtos.LoginUserDTO;
-import br.com.ff.dtos.UserDTO;
+import br.com.ff.application.dto.LoginResponseDTO;
+import br.com.ff.application.dto.LoginUserDTO;
 import br.com.ff.infra.security.TokenService;
-import br.com.ff.models.UserModel;
+import br.com.ff.domain.model.UserModel;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

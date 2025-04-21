@@ -1,4 +1,4 @@
-package br.com.ff.enums;
+package br.com.ff.domain.model;
 
 public enum ExpenseStatus {
 	APROVED,

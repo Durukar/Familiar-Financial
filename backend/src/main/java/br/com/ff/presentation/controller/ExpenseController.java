@@ -1,7 +1,7 @@
-package br.com.ff.controllers;
+package br.com.ff.presentation.controller;
 
-import br.com.ff.models.ExpenseModel;
-import br.com.ff.services.ExpenseService;
+import br.com.ff.domain.model.ExpenseModel;
+import br.com.ff.application.service.ExpenseService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

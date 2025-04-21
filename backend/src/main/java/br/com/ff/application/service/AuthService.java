@@ -1,9 +1,6 @@
-package br.com.ff.services;
+package br.com.ff.application.service;
 
-import br.com.ff.dtos.LoginUserDTO;
-import br.com.ff.models.UserModel;
-import br.com.ff.repositories.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import br.com.ff.infra.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

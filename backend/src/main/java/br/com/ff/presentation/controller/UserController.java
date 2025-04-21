@@ -1,8 +1,8 @@
-package br.com.ff.controllers;
+package br.com.ff.presentation.controller;
 
-import br.com.ff.dtos.CreateUserDTO;
-import br.com.ff.dtos.UserDTO;
-import br.com.ff.services.UserService;
+import br.com.ff.application.dto.CreateUserDTO;
+import br.com.ff.application.dto.UserDTO;
+import br.com.ff.application.service.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
@@ -49,7 +49,7 @@ public class UserController {
 
 		return ResponseEntity.ok(users);
 	}
-	
+
    /*
 	*	GET /api/users/:id
 	*/

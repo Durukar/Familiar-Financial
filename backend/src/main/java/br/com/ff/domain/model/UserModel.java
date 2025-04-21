@@ -1,7 +1,6 @@
-package br.com.ff.models;
+package br.com.ff.domain.model;
 
 import br.com.ff.abstracts.AbstractModel;
-import br.com.ff.enums.UserRoles;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

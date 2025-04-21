@@ -1,6 +1,5 @@
-package br.com.ff.models;
+package br.com.ff.domain.model;
 
-import br.com.ff.enums.ExpenseStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;

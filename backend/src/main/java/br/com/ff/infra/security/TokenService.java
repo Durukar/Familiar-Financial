@@ -1,8 +1,6 @@
 package br.com.ff.infra.security;
 
-import br.com.ff.dtos.UserDTO;
-import br.com.ff.mappers.UserMapper;
-import br.com.ff.models.UserModel;
+import br.com.ff.domain.model.UserModel;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;

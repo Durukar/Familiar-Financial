@@ -1,7 +1,7 @@
-package br.com.ff.services;
+package br.com.ff.application.service;
 
-import br.com.ff.models.ExpenseModel;
-import br.com.ff.repositories.ExpenseRepository;
+import br.com.ff.domain.model.ExpenseModel;
+import br.com.ff.infra.repository.ExpenseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

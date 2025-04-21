@@ -1,6 +1,6 @@
-package br.com.ff.repositories;
+package br.com.ff.infra.repository;
 
-import br.com.ff.models.UserModel;
+import br.com.ff.domain.model.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;

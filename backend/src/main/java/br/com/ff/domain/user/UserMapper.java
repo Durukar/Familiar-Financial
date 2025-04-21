@@ -1,11 +1,10 @@
-package br.com.ff.mappers;
+package br.com.ff.domain.user;
 
-import br.com.ff.dtos.CreateUserDTO;
-import br.com.ff.dtos.UserDTO;
-import br.com.ff.models.UserModel;
+import br.com.ff.application.dto.CreateUserDTO;
+import br.com.ff.application.dto.UserDTO;
+import br.com.ff.domain.model.UserModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {

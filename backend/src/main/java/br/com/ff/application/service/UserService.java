@@ -1,11 +1,10 @@
-package br.com.ff.services;
+package br.com.ff.application.service;
 
-import br.com.ff.dtos.CreateUserDTO;
-import br.com.ff.dtos.UserDTO;
-import br.com.ff.mappers.UserMapper;
-import br.com.ff.models.UserModel;
-import br.com.ff.repositories.UserRepository;
-
+import br.com.ff.application.dto.CreateUserDTO;
+import br.com.ff.application.dto.UserDTO;
+import br.com.ff.domain.user.UserMapper;
+import br.com.ff.domain.model.UserModel;
+import br.com.ff.infra.repository.UserRepository;
 import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
