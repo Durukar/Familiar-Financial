@@ -1,23 +1,22 @@
 package br.com.ff.services;
 
 import br.com.ff.dtos.CreateUserDTO;
+import br.com.ff.dtos.UserDTO;
 import br.com.ff.mappers.UserMapper;
-import br.com.ff.models.RoleModel;
 import br.com.ff.models.UserModel;
-import br.com.ff.projections.UserDetailProjection;
 import br.com.ff.repositories.UserRepository;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.apache.coyote.BadRequestException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.UUID;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService{
 
 	private final UserRepository userRepository;
 
@@ -31,32 +30,29 @@ public class UserService implements UserDetailsService {
 		this.userMapper = userMapper;
 	}
 
-	public void createUser(CreateUserDTO dto) throws Exception {
+	public void	 createUser(CreateUserDTO dto) throws Exception {
+		if (userRepository.findByUsername(dto.username()) != null) throw new BadRequestException("Username already exists");
 		UserModel newUser = userMapper.toModel(dto);
 		encryptPassword(newUser);
 		userRepository.save(newUser);
 	}
 
+	public Page<UserDTO> listAll(Pageable pageable) {
+		Page<UserModel> users = userRepository.findAll(pageable);
+		return users.map(userMapper::toDTO);
+	}
+
+	public UserDTO findById(UUID id) {
+		UserModel user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException(id.toString()));
+		return userMapper.toDTO(user);
+	}
+
+	public void deleteUserById(UUID id) {
+		UserModel user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException(id.toString()));
+		userRepository.delete(user);
+	}
 
 	private void encryptPassword(UserModel newUser) {
 		newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
-	}
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		List<UserDetailProjection> result = userRepository.searchUserAndRolesByUsername(username);
-
-		if (result.isEmpty()) {
-			throw new UsernameNotFoundException(username);
-		}
-
-		UserModel user = new UserModel();
-		user.setUsername(username);
-		user.setPassword(result.get(0).getPassword());
-		for (UserDetailProjection projection : result) {
-			user.addRole(new RoleModel(projection.getRoleId(), projection.getAuthority()));
-		}
-
-		return user;
 	}
 }

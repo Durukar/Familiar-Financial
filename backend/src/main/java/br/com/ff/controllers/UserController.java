@@ -1,11 +1,21 @@
 package br.com.ff.controllers;
 
 import br.com.ff.dtos.CreateUserDTO;
+import br.com.ff.dtos.UserDTO;
 import br.com.ff.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
+@SecurityRequirement(name = "bearerAuth")
+@Tag(name = "Users", description = "Users routes")
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
@@ -23,5 +33,45 @@ public class UserController {
 	public ResponseEntity<String> create(@RequestBody CreateUserDTO request) throws Exception {
 		userService.createUser(request);
 		return ResponseEntity.noContent().build();
+	}
+
+	/*
+	 *	GET /api/users/all
+	 */
+	@GetMapping(path = "/all")
+	public ResponseEntity<Page<UserDTO>> getAll(
+			@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size,
+			@RequestParam(defaultValue = "id") String sort
+	) {
+		Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
+		Page<UserDTO> users = userService.listAll(pageable);
+
+		return ResponseEntity.ok(users);
+	}
+	
+   /*
+	*	GET /api/users/:id
+	*/
+	@GetMapping(path = "/{id}")
+	public ResponseEntity<UserDTO> getById(@PathVariable UUID id) throws Exception {
+		try {
+			var user = userService.findById(id);
+			return ResponseEntity.ok(user);
+		} catch (RuntimeException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/*
+	 *	DELETE /api/users/delete/:id
+	 */
+	@GetMapping(path = "/delete/{id}")
+	public void delete(@PathVariable UUID id) throws Exception {
+		try {
+			userService.deleteUserById(id);
+		} catch (RuntimeException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

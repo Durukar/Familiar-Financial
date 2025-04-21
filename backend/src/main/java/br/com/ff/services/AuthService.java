@@ -19,16 +19,5 @@ public class AuthService {
 		this.userRepository = userRepository;
 	}
 
-	public void passworValidate(LoginUserDTO credentials) {
-		 UserModel user = (UserModel) userRepository.findByUsername(credentials.username());
 
-		 if (user != null) {
-			 var passDecoded = passwordDecode(user.getPassword(), credentials.password());
-			 System.out.println("[DEBUG] PASS DECODED: " + passDecoded);
-		 }
-	}
-
-	private boolean passwordDecode(String actualPassword, String passedPassword) {
-		return passwordEncoder.matches(passedPassword, actualPassword);
-	}
 }

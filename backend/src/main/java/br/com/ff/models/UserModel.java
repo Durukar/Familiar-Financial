@@ -1,8 +1,10 @@
 package br.com.ff.models;
 
 import br.com.ff.abstracts.AbstractModel;
+import br.com.ff.enums.UserRoles;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
@@ -17,18 +19,14 @@ public class UserModel extends AbstractModel implements UserDetails {
 	@Column(unique = true, nullable = false)
 	private String password;
 
+	@Enumerated(EnumType.STRING)
+	private UserRoles role;
+
 	@OneToMany(mappedBy = "requestedBy")
 	private List<ExpenseModel> requestedExpenses = new ArrayList<ExpenseModel>();
 
 	@OneToMany(mappedBy = "approvedBy")
 	private List<ExpenseModel> approvedExpenses = new ArrayList<ExpenseModel>();
-
-	@ManyToMany
-	@JoinTable(name = "user_role",
-		joinColumns = @JoinColumn(name = "user_id"),
-			inverseJoinColumns = @JoinColumn(name = "role_id")
-	)
-	private Set<RoleModel> roles = new HashSet<>();
 
 	@Override
 	public String getUsername() {
@@ -61,11 +59,16 @@ public class UserModel extends AbstractModel implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return roles;
-	}
+		// Versão melhorada usando o próprio enum
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority(role.name()));
 
-	public void addRole(RoleModel role) {
-		roles.add(role);
+		// Se for ADMIN, adiciona também o ROLE_USER
+		if (role == UserRoles.ROLE_ADMIN) {
+			authorities.add(new SimpleGrantedAuthority(UserRoles.ROLE_USER.name()));
+		}
+
+		return authorities;
 	}
 
 	public String getPassword() {
@@ -84,6 +87,13 @@ public class UserModel extends AbstractModel implements UserDetails {
 		return requestedExpenses;
 	}
 
+	public UserRoles getRole() {
+		return role;
+	}
+
+	public void setRole(UserRoles role) {
+		this.role = role;
+	}
 
 	// Equals and hashcode
 

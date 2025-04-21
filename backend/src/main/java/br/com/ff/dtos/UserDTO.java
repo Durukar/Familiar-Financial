@@ -2,7 +2,10 @@ package br.com.ff.dtos;
 
 import br.com.ff.enums.UserRoles;
 
-public record CreateUserDTO(
+import java.util.UUID;
+
+public record UserDTO(
+		UUID id,
 		String username,
 		String password,
 		UserRoles role
