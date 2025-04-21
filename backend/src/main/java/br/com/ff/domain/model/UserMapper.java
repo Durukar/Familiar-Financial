@@ -1,8 +1,7 @@
-package br.com.ff.domain.user;
+package br.com.ff.domain.model;
 
 import br.com.ff.application.dto.CreateUserDTO;
 import br.com.ff.application.dto.UserDTO;
-import br.com.ff.domain.model.UserModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

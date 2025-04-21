@@ -66,7 +66,7 @@ public class UserController {
 	/*
 	 *	DELETE /api/users/delete/:id
 	 */
-	@GetMapping(path = "/delete/{id}")
+	@DeleteMapping(path = "/delete/{id}")
 	public void delete(@PathVariable UUID id) throws Exception {
 		try {
 			userService.deleteUserById(id);

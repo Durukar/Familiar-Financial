@@ -18,4 +18,6 @@ public class ExpenseService {
 	public List<ExpenseModel> findAll() {
 		return expenseRepository.findAll();
 	}
+
+
 }

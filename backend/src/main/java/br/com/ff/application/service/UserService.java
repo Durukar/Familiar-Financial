@@ -2,9 +2,10 @@ package br.com.ff.application.service;
 
 import br.com.ff.application.dto.CreateUserDTO;
 import br.com.ff.application.dto.UserDTO;
-import br.com.ff.domain.user.UserMapper;
+import br.com.ff.domain.model.UserMapper;
 import br.com.ff.domain.model.UserModel;
 import br.com.ff.infra.repository.UserRepository;
+import br.com.ff.presentation.exception.custom.DuplicateUsernameException;
 import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,7 +31,7 @@ public class UserService{
 	}
 
 	public void	 createUser(CreateUserDTO dto) throws Exception {
-		if (userRepository.findByUsername(dto.username()) != null) throw new BadRequestException("Username already exists");
+		if (userRepository.findByUsername(dto.username()) != null) throw new DuplicateUsernameException("Username already exists");
 		UserModel newUser = userMapper.toModel(dto);
 		encryptPassword(newUser);
 		userRepository.save(newUser);
