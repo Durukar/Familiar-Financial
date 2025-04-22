@@ -6,7 +6,6 @@ import br.com.ff.domain.model.UserMapper;
 import br.com.ff.domain.model.UserModel;
 import br.com.ff.infra.repository.UserRepository;
 import br.com.ff.presentation.exception.custom.DuplicateUsernameException;
-import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

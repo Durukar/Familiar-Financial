@@ -1,7 +1,9 @@
 package br.com.ff.presentation.exception.handler;
 
 import br.com.ff.presentation.exception.ExceptionResponse;
+import br.com.ff.presentation.exception.custom.AuthorizedExpenseDeletionException;
 import br.com.ff.presentation.exception.custom.DuplicateUsernameException;
+import br.com.ff.presentation.exception.custom.ExpenseAprovedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -29,6 +31,28 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
 
 	@ExceptionHandler(DuplicateUsernameException.class)
 	public final ResponseEntity<ExceptionResponse> handleConflictExceptions(Exception ex, WebRequest request) {
+		ExceptionResponse response = new ExceptionResponse(
+				new Date(),
+				ex.getMessage(),
+				request.getDescription(false)
+		);
+
+		return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+	}
+
+	@ExceptionHandler(AuthorizedExpenseDeletionException.class)
+	public final ResponseEntity<ExceptionResponse> handleAuthorizedExpenseDeletionException(Exception ex, WebRequest request) {
+		ExceptionResponse response = new ExceptionResponse(
+				new Date(),
+				ex.getMessage(),
+				request.getDescription(false)
+		);
+
+		return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+	}
+
+	@ExceptionHandler(ExpenseAprovedException.class)
+	public final ResponseEntity<ExceptionResponse> handleExpenseAprovedException(Exception ex, WebRequest request) {
 		ExceptionResponse response = new ExceptionResponse(
 				new Date(),
 				ex.getMessage(),

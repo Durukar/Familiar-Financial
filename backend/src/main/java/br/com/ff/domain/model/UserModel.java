@@ -27,6 +27,10 @@ public class UserModel extends AbstractModel implements UserDetails {
 	@OneToMany(mappedBy = "approvedBy")
 	private List<ExpenseModel> approvedExpenses = new ArrayList<ExpenseModel>();
 
+	@ManyToOne
+	@JoinColumn(name = "balance_familiar_id")
+	private FamiliarBalanceModel balanceFamiliar;
+
 	@Override
 	public String getUsername() {
 		return username;
@@ -92,6 +96,14 @@ public class UserModel extends AbstractModel implements UserDetails {
 
 	public void setRole(UserRoles role) {
 		this.role = role;
+	}
+
+	public FamiliarBalanceModel getBalanceFamiliar() {
+		return balanceFamiliar;
+	}
+
+	public void setBalanceFamiliar(FamiliarBalanceModel balanceFamiliar) {
+		this.balanceFamiliar = balanceFamiliar;
 	}
 
 	// Equals and hashcode

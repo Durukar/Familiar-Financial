@@ -22,7 +22,7 @@ public class AbstractModel implements Serializable {
 	@Column(name = "created_at", updatable = false)
 	private LocalDate createdAt;
 
-	@Column(name = "updated_at", updatable = false)
+	@Column(name = "updated_at")
 	private Date updatedAt;
 
 	public AbstractModel() {}
@@ -37,5 +37,13 @@ public class AbstractModel implements Serializable {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public LocalDate getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
 	}
 }

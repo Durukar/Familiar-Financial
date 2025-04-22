@@ -27,6 +27,10 @@ public class AuthenticationController {
 		this.tokenService = tokenService;
 	}
 
+	/*
+	 *	POST /api/v1/auth/login
+	 */
+
 	@PostMapping(path = "/login")
 	public ResponseEntity login(@RequestBody @Valid LoginUserDTO data) {
 		var usernamePassword = new UsernamePasswordAuthenticationToken(data.username(), data.password());

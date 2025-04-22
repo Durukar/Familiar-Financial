@@ -31,6 +31,7 @@ api:
   security:
     token:
       secret: ${JWT_SECRET:my-secret-key}
-#logging:
-#  level:
-#    org.flywaydb.core: DEBUG
+logging:
+  level:
+    root: INFO
+#    br.com.ff: DEBUG
