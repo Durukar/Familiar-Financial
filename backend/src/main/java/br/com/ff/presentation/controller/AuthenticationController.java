@@ -30,7 +30,6 @@ public class AuthenticationController {
 	/*
 	 *	POST /api/v1/auth/login
 	 */
-
 	@PostMapping(path = "/login")
 	public ResponseEntity login(@RequestBody @Valid LoginUserDTO data) {
 		var usernamePassword = new UsernamePasswordAuthenticationToken(data.username(), data.password());
@@ -40,4 +39,6 @@ public class AuthenticationController {
 
 		return ResponseEntity.ok( new LoginResponseDTO(token));
 	}
+
+
 }

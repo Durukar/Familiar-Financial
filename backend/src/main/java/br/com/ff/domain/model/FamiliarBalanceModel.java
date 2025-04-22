@@ -7,6 +7,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,7 +17,7 @@ public class FamiliarBalanceModel extends AbstractModel {
 	private BigDecimal balance;
 
 	@OneToMany(mappedBy = "balanceFamiliar")
-	private Set<UserModel> users;
+	private Set<UserModel> users = new HashSet<>();
 
 	public FamiliarBalanceModel() {}
 

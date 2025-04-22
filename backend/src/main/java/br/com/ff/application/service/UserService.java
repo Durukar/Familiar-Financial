@@ -23,17 +23,24 @@ public class UserService{
 
 	private final UserMapper userMapper;
 
-	public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserMapper userMapper) {
+	private final FamiliarBalanceService familiarBalanceService;
+
+	public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserMapper userMapper, FamiliarBalanceService familiarBalanceService) {
 		this.userRepository = userRepository;
 		this.passwordEncoder = passwordEncoder;
 		this.userMapper = userMapper;
+		this.familiarBalanceService = familiarBalanceService;
 	}
 
 	public void	 createUser(CreateUserDTO dto) throws Exception {
+
 		if (userRepository.findByUsername(dto.username()) != null) throw new DuplicateUsernameException("Username already exists");
 		UserModel newUser = userMapper.toModel(dto);
 		encryptPassword(newUser);
-		userRepository.save(newUser);
+
+		var savedUser = userRepository.save(newUser);
+
+		familiarBalanceService.create(savedUser);
 	}
 
 	public Page<UserDTO> listAll(Pageable pageable) {
