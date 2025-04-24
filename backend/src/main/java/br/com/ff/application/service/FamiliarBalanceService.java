@@ -21,14 +21,16 @@ public class FamiliarBalanceService {
 		return familiarBalanceRepository.findAll();
 	}
 
-	public FamiliarBalanceModel create(UserModel user) {
+	// De acordo com a regra de negocios o sistema ja deve possui um balance na inicialização
+	// da aplicação
+	public void update(UserModel user) {
 
-		FamiliarBalanceModel familiarBalance = new FamiliarBalanceModel(BigDecimal.ZERO);
+		FamiliarBalanceModel balance = familiarBalanceRepository.findAll().get(0);
 
-		familiarBalance.addUser(user);
+		balance.addUser(user);
 
-		user.setBalanceFamiliar(familiarBalance);
+		user.setBalanceFamiliar(balance);
 
-		return familiarBalanceRepository.save(familiarBalance);
+		familiarBalanceRepository.save(balance);
 	}
 }

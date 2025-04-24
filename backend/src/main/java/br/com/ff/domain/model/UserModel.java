@@ -2,6 +2,7 @@ package br.com.ff.domain.model;
 
 import br.com.ff.abstracts.AbstractModel;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,7 +27,7 @@ public class UserModel extends AbstractModel implements UserDetails {
 
 	@OneToMany(mappedBy = "approvedBy")
 	private List<ExpenseModel> approvedExpenses = new ArrayList<ExpenseModel>();
-
+	
 	@ManyToOne
 	@JoinColumn(name = "balance_familiar_id")
 	private FamiliarBalanceModel balanceFamiliar;

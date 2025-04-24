@@ -40,7 +40,7 @@ public class UserService{
 
 		var savedUser = userRepository.save(newUser);
 
-		familiarBalanceService.create(savedUser);
+		familiarBalanceService.update(savedUser);
 	}
 
 	public Page<UserDTO> listAll(Pageable pageable) {
